@@ -1,0 +1,163 @@
+// задача 1
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    double S = 0.0;
+
+    for (int i; i <= N; ++i) {
+        double chislitel = (double)i * i + 2 * i + 2;
+
+        double znamenatel = 2 * i + 1;
+
+        double drob = chislitel / znamenatel;
+
+        if (i % 2 == 0) {
+            S = S - drob;
+        } else {
+            S = S + drob;
+        }
+    }
+
+    cout.precision(4);
+    cout << fixed << S << endl;
+
+    return 0;
+}
+
+// задача 2
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int K;
+    cin >> K;
+
+    int count = 0;
+    int special_count = 0;
+    int digit_sum = 0;
+    int total = 0;
+
+    while (total < K) {
+        int num;
+        cin >> num;
+
+        count++;
+        total += num;
+
+        if (num % 5 == 4) {
+            special_count++;
+        }
+
+        if (num % 10 == 9) {
+            digit_sum += num;
+        }
+    }
+
+    cout << "Count: " << count << endl;
+    cout << "Special count: " << special_count << endl;
+    cout << "Digit sum: " << digit_sum << endl;
+    cout << "Total: " << total << endl;
+
+    return 0;
+}
+
+// задача 3
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    long long N;
+    cin >> N;
+
+    int kept_count = 0;
+    int removed_sum = 0;
+    int min_digit = 9;
+    long long M = 0;
+    long long place = 1;
+
+    long long temp = N;
+
+    if (temp == 0) {
+        min_digit = 0;
+        kept_count = 1;
+        M = 0;
+    }
+
+    while (temp > 0) {
+        int digit = temp % 10;
+
+        if (digit < min_digit) {
+            min_digit = digit;
+        }
+
+        if (digit <= 3) {
+            kept_count++;
+            M = digit * place + M;
+            place *= 10;
+        } else {
+            removed_sum += digit;
+        }
+
+        temp /= 10;
+    }
+
+    cout << "Kept count: " << kept_count << endl;
+    cout << "Removed sum: " << removed_sum << endl;
+    cout << "Min digit: " << min_digit << endl;
+    cout << "New number: " << M << endl;
+
+    return 0;
+}
+
+// задача 4
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+
+    int mid = N / 2;
+
+    for (int r = 0; r < N; r++) {
+        int spaces;
+        if (r <= mid) {
+            spaces = mid - r;
+        } else {
+            spaces = r - mid;
+        }
+
+        int symbols = N - 2 * spaces;
+
+        for (int s = 0; s < spaces; s++) {
+            cout << ' ';
+        }
+
+        char character;
+        if (r % 2 == 0) {
+            character = '*';
+        } else {
+            character = '+';
+        }
+
+        for (int i = 0; i < symbols; i++) {
+            cout << character;
+        }
+
+        cout << endl;
+    }
+
+    return 0;
+}
